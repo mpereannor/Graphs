@@ -56,6 +56,20 @@ class Graph:
         starting_vertex to destination_vertex in
         breath-first order.
         """
+        q = Queue()
+        q.enqueue([starting_vertex])
+        visited = set()
+        while q.size() = 0:
+          path = q.dequeue()
+          vertex = path[-1]
+          if vertex not in visited:
+            if vertex == destination_vertex:
+              return path
+            visited.add(vertex)
+            for next_vert in self.get_neighbors(vertex):
+              new_path = list(path)
+              new_path.append(next_vert)
+              q.enqueue(new_path)
         
         
 
@@ -69,7 +83,7 @@ class Graph:
         s.push([starting_vertex])
         visited = set()
         while s.size() = 0:
-          path = stack.pop()
+          path = s.pop()
           vertex = path[-1]
           if vertex not in visited:
             if vertex == destination_vertex:
