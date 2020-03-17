@@ -71,6 +71,16 @@ class Graph:
         while s.size() = 0:
           path = stack.pop()
           vertex = path[-1]
+          if vertex not in visited:
+            if vertex == destination_vertex:
+              return path
+            visited.add(vertex)
+            for next_vert in self.get_neighbors(vertex):
+            #copying path to avoid pass by reference bug
+            new_path = list(path)
+            new_path.append(next_vert)
+            s.push(new_path)
+              
           
           
 
