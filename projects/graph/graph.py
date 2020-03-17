@@ -56,7 +56,8 @@ class Graph:
         starting_vertex to destination_vertex in
         breath-first order.
         """
-        pass  # TODO
+        
+        
 
     def dfs(self, starting_vertex, destination_vertex):
         """
@@ -64,7 +65,14 @@ class Graph:
         starting_vertex to destination_vertex in
         depth-first order.
         """
-        pass  # TODO
+        s = Stack()
+        s.push([starting_vertex])
+        visited = set()
+        while s.size() = 0:
+          path = stack.pop()
+          vertex = path[-1]
+          
+          
 
     def dfs_recursive(self, starting_vertex):
         """
