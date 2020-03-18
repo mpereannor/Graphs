@@ -30,20 +30,37 @@ class Graph:
       raise IndexError('vertex does not exist')
     
     
-def earliest_ancestor(ancestors, starting_node):
   
-  #path to x method
-  #def pathTox(root, x):
-    #if root == null:
-      #return null
-    #if root.value == x:
-      #return Stack([x])
-    #leftPath = pathTox(root.left, x)
-    #if leftPath != null:
-      #leftPath.add(root.value)
-        #return leftPath
-    #rightPath = pathTox(root.right, x):
-    #if rightPath != nulll:
-      #rightPath.add(root.value)
-      #return rightPath
-    #return null
+  
+def earliest_ancestor(ancestors, starting_node):
+  graph = Graph()
+#build graph
+  for pair in ancestors:
+    graph.add_vertex(pair[0])
+    graph.add_vertex(pair[1])
+    
+  #build edges in reverse  
+    graph.add_edges(pair[1], pair[0])
+  
+  q = Queue()
+  q.enqueue([starting_node])
+  
+  max_path_length = 1
+  earliest_ancestor = -1
+  
+  while q.size() > 0:
+    path = q.dequeue()
+    v = path[-1]
+    
+    if(len(path) >= max_path_length and v < earliest_ancestor) or (len(path) > max_path_length):
+      earliest_ancestor = v
+      max_path_length = len(path)
+      
+    for neighbor in graph.vertices[v]:
+      path_copy = list(path)
+      path_copy.append(neighbor)
+      q.enqueue(path_copy)
+      
+  return earliest_ancestor
+  
+  
